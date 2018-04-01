@@ -1,0 +1,202 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Zeon</title>
+    <meta name="description" content="Here goes description" />
+    <meta name="author" content="author name" />
+    <link rel="shortcut icon" href="/Content/Zeon/images/favicon.ico" type="image/x-icon" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <link href="/Content/Zeon/http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,700italic,400,600,700,800" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="/Content/Zeon/css/bootstrap.css" />
+    <link rel="stylesheet" href="/Content/Zeon/css/style.css" />
+
+    @RenderSection("head",false)
+</head>
+
+<body class="home-blog-show">
+
+    <div class="header">
+        <div class="container">
+            <div class="header-top-info">
+                <ul class="header-top-socials">
+                    <li><a href="/Content/Zeon#"><i class="icon-160" title="161"></i></a></li>
+                    <li><a href="#"><i class="icon-138" title="161"></i></a></li>
+                    <li><a href="#"><i class="icon-106" title="161"></i></a></li>
+                    <li><a href="#"><i class="icon-169" title="161"></i></a></li>
+                    <li><a href="#"><i class="icon-163" title="161"></i></a></li>
+                </ul>
+                Phone: +373 56 65 65
+            </div>
+            <div class="header-middle-info">
+                <div class="col-md-4">
+                    <div class="logo">
+                        <a href="/Content/Zeon/index.html">
+                            <img src="/Content/Zeon/images/elements/logo.png" alt="site logo" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <ul class="header-middle-account">
+                        <li><a href="/Content/Zeon/Kullanici/Hesabim"><i class="icon-330" title="My account"></i> Hesabım</a></li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a href="/Content/Zeon/Kullanici/CikisYap"><i class="icon-351" title="Log off"></i> Çıkış Yap</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/Content/Zeon/Kullanici/GirisYap"><i class="icon-351" title="Login"></i> Giriş Yap</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="menu">
+                <div class="search-cart">
+                    <form class="search">
+                        <input type="text" class="search-line" placeholder="Ara" name="serch" />
+                        <input type="submit" value="" class="search-button" />
+                    </form>
+                    @{
+                        Html.RenderAction("Sepet", "Home");
+                    }
+
+                    @{
+                        Html.RenderAction("MiniSepetWidget", "Home");
+                    }
+
+                    <div class="clear"></div>
+                </div>
+                <div class="repsonsive-menu"><i class="icon-406" title="406"></i> Menu</div>
+                <ul>
+                    <li class="menu-item-has-children active">
+                        <a href="/Home/Index">Ana Syafa</a>
+                    </li>
+                    <li><a href="/Content/Zeon/Home/Kategoriler">Kategoriler</a></li>
+                    <li><a href="/Content/Zeon/all-products.html">Shop</a></li>
+
+                    <li class="menu-item-has-children">
+                        <a href="#">Sayfalar</a>
+                        <ul>
+                            <li><a href="/Content/Zeon/Home/Hakkimizda">Hakkımızda</a></li>
+                            <li><a href="/Content/Zeon/Home/KayitOl">Kayıt Ol</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/Content/Zeon/Home/Iletisim">İletişim</a></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+
+        @RenderBody();
+
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-xs-6">
+                    <ul class="socials">
+                        <li><a href="#"><img src="/Content/Zeon/images/elements/socials/facebook.png" alt="facebook" />Facebook</a></li>
+                        <li><a href="#"><img src="/Content/Zeon/images/elements/socials/twitter.png" alt="twitter" />Twitter</a></li>
+                        <li><a href="#"><img src="/Content/Zeon/images/elements/socials/youtube.png" alt="youtube" />Youtube</a></li>
+                        <li><a href="#"><img src="/Content/Zeon/images/elements/socials/googleplus.png" alt="google" />Google+</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-xs-6">
+                    <ul>
+                        <li><a href="#">Register now</a></li>
+                        <li><a href="#">Subscribe for newsletter</a></li>
+                        <li><a href="#">Checkout</a></li>
+                        <li><a href="#">Delivery</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Faq</a></li>
+                        <li><a href="#">Ask us</a></li>
+                        <li><a href="#">Our partners</a></li>
+                        <li><a href="#">About us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-xs-6">
+                    <ul>
+                        <li><a href="#">Payments</a></li>
+                        <li><a href="#">Size guide</a></li>
+                        <li><a href="#">Order tracking</a></li>
+                        <li><a href="#">Order history</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Terms & conditions</a></li>
+                        <li><a href="#">Security & privacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-xs-6">
+                    <ul class="menu-item">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Bolg</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Bag</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="subscription">
+                        <div class="subscription-title">Newsletter subscribe</div>
+                        <form class="subscription" id="newsletter" method="post">
+                            <input type="text" name="newsletter-name" placeholder="Name" class="subscription-line">
+                            <input type="text" name="newsletter-email" placeholder="E-mail" class="subscription-line">
+                            <input type="submit" value="send" class="button-5">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="mini-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        Copyright 2017 ZEON &nbsp;  &nbsp;  &nbsp; Designed by Salih ŞEKER
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-right">
+                            <img src="/Content/Zeon/images/elements/payment.png" alt="payment systems" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Content/Zeon/js/modernizr.custom.63321.js" type="text/javascript"></script>
+    <script src="/Content/Zeon/js/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="/Content/Zeon/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/Content/Zeon/js/bootstrap.js" type="text/javascript"></script>
+    <script src="/Content/Zeon/js/placeholder.js" type="text/javascript"></script>
+    <script src="/Content/Zeon/js/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <script src="/Content/Zeon/js/masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="/Content/Zeon/js/jquery.swipebox.min.js" type="text/javascript"></script>
+    <script src="/Content/Zeon/js/farbtastic/farbtastic.js" type="text/javascript"></script>
+    <script src="/Content/Zeon/js/options.js" type="text/javascript"></script>
+    <script src="/Content/Zeon/js/plugins.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+      <script src="/Content/Zeon/https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="/Content/Zeon/https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- ======================================================================
+                                    END SCRIPTS
+    ======================================================================= -->
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Ekle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@section head{
+
+    <link rel="stylesheet" type="text/css" href="/Content/Admin/assets/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Admin/assets/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Admin/assets/bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Admin/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Admin/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+
+}
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Ürün Ekle
+            </header>
+            <div class="panel-body">
+                <form role="form" action="/Admin/UrunEkle" method="post" class="form-horizontal tasi-form">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Ürün Adı</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="" id="f-name" class="form-control" name="Adi">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Açıklama</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="" id="l-name" class="form-control" name="Aciklama">                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Alış Fiyatı</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="spinner-input form-control" name="AlisFiyat">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Satış Fiyat</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="spinner-input form-control" name="SatisFiyat">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Kategori</label>
+                        <div class="col-lg-10">
+                            <select class="form-control m-bot15" name="KategoriID">
+                                @foreach (var kategori in ViewBag.Kategoriler)
+                                {
+                                    <option value="@kategori.Id">@kategori.Adi</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Marka</label>
+                        <div class="col-lg-10">
+                            <select class="form-control m-bot15" name="MarkaID">
+                                @foreach (var marka in ViewBag.Markalar)
+                                {
+                                    <option value="@marka.Id">@marka.Adi</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-danger" type="submit">Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section script{
+
+    <script type="text/javascript" src="/Content/Admin/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/Content/Admin/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="/Content/Admin/assets/bootstrap-daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="/Content/Admin/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="/Content/Admin/assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script type="text/javascript" src="/Content/Admin/assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+
+}

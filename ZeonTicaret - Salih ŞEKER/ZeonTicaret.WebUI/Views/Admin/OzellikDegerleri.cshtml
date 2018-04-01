@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Özellik Değerleri";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model IEnumerable<ZeonTicaret.WebUI.Models.OzellikDeger>
+
+<section class="panel">
+    <header class="panel-heading">
+        Özellik Değerleri
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <br />
+            <div class="clearfix">
+                <div class="btn-group">
+                    <a href="/Admin/OzellikDegerEkle" id="editable-sample_new" class="btn btn-success">
+                        Yeni Özellik Değeri <i class="icon-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="space15"></div>
+            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Özellik Değer Adı</th>
+                        <th>Açıklama</th>
+                        <th>Özellik Tipi</th>
+                        <th>Günecelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var deger in Model)
+                    {
+                        <tr class="">
+                            <td>@deger.Adi</td>
+                            <td>@deger.Aciklama</td>
+                            @if (deger.OzellikTip != null)
+                            {
+                                <td>@deger.OzellikTip.Adi</td>
+                            }
+                            <td><a class="edit" href="/Admin/OzellikDegerGuncelle/@deger.Id"><i class="icon-pencil"></i></a></td>
+                            <td><a class="delete" href="/Admin/OzellikDegerSil/@deger.Id"><i class="icon-trash"></i></a></td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+

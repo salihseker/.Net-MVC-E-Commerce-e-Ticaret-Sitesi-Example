@@ -1,0 +1,78 @@
+﻿
+@model ZeonTicaret.WebUI.App_Classes.Sepet
+
+<script src="~/Content/Zeon/js/jquery-1.10.0.min.js"></script>
+<script>
+    $(document).ready(function myfunction() {
+        $(".urunSil").click(function UrunSil() {
+            var uId = $(this).attr("name");
+
+            $.ajax({
+                type: "GET",
+                url:"/Home/SepetUrunAdetDusur",
+                data: { id: uId },
+                success: function myfunction() {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/MiniSepetWidget",
+                        success: function VeriGetir(veri) {
+                            $(".cart-all").html('');
+                            $(".cart-all").html(veri);
+                        }
+
+                    })
+                },
+                error: function myfunction() {
+                    alert("Sepetten ürün silinemedi. ");
+            }
+            })
+        })
+    })
+
+</script>
+
+<div class="cart-all">
+    <i class="icon-19" title="19"></i>
+    @if (Model != null)
+    {
+        @Model.ToplamTutar.ToString("C2");
+    }
+    else
+    {
+        <span>0 ₺</span>
+    }
+    <div class="inside-cart">
+        <p>
+            @if (Model != null)
+            {
+                <span> Sepette Toplam @Model.Urunler.Sum(x => x.Adet) Adet Ürün Bulunmaktadır.</span>  
+            }
+            else {
+                <span>Sepette Toplam 0 Adet Ürün Bulunmaktadır. </span>
+            }
+        </p>
+        <ul>
+
+            @if (Model != null)
+            {
+                foreach (var item in Model.Urunler)
+                {
+                    <li>
+                        <div class="inside-cart-image">
+                        @if (item.Urun.Resims != null)
+                        {
+                            <img src="@item.Urun.Resims.FirstOrDefault(x => x.Varsayilan == true).OrtaYol" alt="@item.Urun.Adi" />
+                        }
+                        </div>
+                        <button class ="urunSil" name="@item.Urun.Id">x</button>
+
+                        <a href="/Home/UrunDetay/@item.Urun.Adi">Stripe boucle</a>
+                        <p>Tutar : @item.Tutar.ToString("C2")</p>
+                        <p>Adet : @item.Adet</p>
+                    </li>
+                }
+            }
+            
+        </ul>
+    </div>
+</div>

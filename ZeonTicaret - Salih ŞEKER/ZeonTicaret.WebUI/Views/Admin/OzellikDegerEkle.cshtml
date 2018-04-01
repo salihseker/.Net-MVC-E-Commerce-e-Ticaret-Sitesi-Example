@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Özellik Değer Ekle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model IEnumerable<ZeonTicaret.WebUI.Models.OzellikTip>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Özellik Değer Ekle
+            </header>
+            <div class="panel-body">
+                <form action="/Admin/OzellikDegerEkle" class="form-horizontal tasi-form" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">Özellik Tip Adı</label>
+                        <div class="col-sm-10">
+                            <select class="form-control m-bot15" name="OzellikTipID">
+                                @foreach (var tip in Model)
+                                {
+                                    <option value="@tip.Id">@tip.Adi</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">Özellik Değer Adı</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="Adi" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">Açıklama</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="Aciklama" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-danger" type="submit">Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

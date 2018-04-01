@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Özellik Tipleri";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model IEnumerable<ZeonTicaret.WebUI.Models.OzellikTip>
+
+<section class="panel">
+    <header class="panel-heading">
+        Özellik Tipleri
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <br />
+            <div class="clearfix">
+                <div class="btn-group">
+                    <a href="/Admin/OzellikTipEkle" id="editable-sample_new" class="btn btn-success">
+                        Yeni Özellik Tip <i class="icon-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="space15"></div>
+            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Özellik Tip Adı</th>
+                        <th>Açıklama</th>
+                        <th>Kategorisi</th>
+                        <th>Günecelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var tip in Model)
+                    {
+                        <tr class="">
+                            <td>@tip.Adi</td>
+                            <td>@tip.Aciklama</td>
+                            @if (tip.Kategori != null) { 
+                                <td>@tip.Kategori.Adi</td>
+                            }
+                            <td><a class="edit" href="/Admin/OzellikTipGuncelle/@tip.Id"><i class="icon-pencil"></i></a></td>
+                            <td><a class="delete" href="/Admin/OzellikTipSil/@tip.Id"><i class="icon-trash"></i></a></td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

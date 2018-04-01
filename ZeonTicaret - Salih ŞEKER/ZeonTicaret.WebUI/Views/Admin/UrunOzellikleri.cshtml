@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Özellikleri";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model IEnumerable<ZeonTicaret.WebUI.Models.UrunOzellik>
+
+<section class="panel">
+    <header class="panel-heading">
+        Ürün Özellikleri
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <br />
+            <div class="clearfix">
+                <div class="btn-group">
+                    <a href="/Admin/UrunOzellikEkle" id="editable-sample_new" class="btn btn-success">
+                        Yeni Ürün Özelliği <i class="icon-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="space15"></div>
+            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Ürün Adı</th>
+                        <th>Özellik Tip Adı</th>
+                        <th>Özellik Değer Adı</th>
+                        <th>Günecelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ozellik in Model)
+                    {
+                        <tr class="">
+                            @if (ozellik.Urun != null)
+                            {
+                                <td>@ozellik.Urun.Adi</td>
+                            }
+                            @if (ozellik.OzellikTip != null)
+                            {
+                                <td>@ozellik.OzellikTip.Adi</td>
+                            }
+                            @if (ozellik.OzellikDeger != null)
+                            {
+                                <td>@ozellik.OzellikDeger.Adi</td>
+                            }
+                            <td><a class="edit" href="#"><i class="icon-pencil"></i></a></td>
+                            @if (ozellik.Urun != null && ozellik.OzellikTip != null && ozellik.OzellikDeger != null)
+                            {
+                                <td><a class="delete" href="@Url.Action("UrunOzellikSil","Admin",new {urunID = @ozellik.UrunID , tipID = @ozellik.OzellikTipID, degerID = @ozellik.OzellikDegerID })"><i class="icon-trash"></i></a></td>
+                            }
+
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

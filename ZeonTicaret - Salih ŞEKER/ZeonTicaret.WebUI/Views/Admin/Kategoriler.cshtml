@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Kategoriler";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model IEnumerable<ZeonTicaret.WebUI.Models.Kategori>
+
+<section class="panel">
+    <header class="panel-heading">
+        Kategoriler
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <br />
+            <div class="clearfix">
+                <div class="btn-group">
+                    <a href="/Admin/KategoriEkle" id="editable-sample_new" class="btn btn-success">
+                        Yeni Kategori <i class="icon-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="space15"></div>
+            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Kategori Adı</th>
+                        <th>Açıklama</th>
+                        <th>Günecelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var kategori in Model)
+                    {
+                        <tr class="">
+                            <td>@kategori.Adi</td>
+                            <td>@kategori.Aciklama</td>
+                            <td><a class="edit" href="/Admin/KategoriGuncelle/@kategori.Id"><i class="icon-pencil"></i></a></td>
+                            <td><a class="delete" href="/Admin/KategoriSil/@kategori.Id"><i class="icon-trash"></i></a></td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Ana Sayfa";
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+
+@{
+    Html.RenderAction("Slider", "Home");
+
+    Html.RenderAction("YeniUrunler", "Home");
+
+    Html.RenderAction("Servisler", "Home");
+
+    Html.RenderAction("Markalar", "Home");
+}

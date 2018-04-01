@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ZeonTicaret.WebUI.Models.OzellikDeger>
+
+
+<div class="form-group">
+    <label class="col-lg-2 control-label">Özellik Değer : </label>
+    <div class="col-lg-10">
+        <select class="form-control m-bot15" name="OzellikDegerID">
+            @foreach (var deger in Model)
+            {
+                <option value="@deger.Id">@deger.Adi</option>
+            }
+        </select>
+    </div>
+</div>

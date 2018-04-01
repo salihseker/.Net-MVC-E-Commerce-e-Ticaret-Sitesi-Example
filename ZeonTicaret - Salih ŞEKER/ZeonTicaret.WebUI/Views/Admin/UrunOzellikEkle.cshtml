@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Özellik Ekle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@section head {
+
+    <script src="~/Content/Admin/js/jquery-1.8.3.min.js"></script>
+    <script>
+        $(document).ready(function myfunction() {
+            $("#urun").change(function myfunction() {
+                var kId = $(this).find("option:selected").attr("data-urunKategoriID");
+                $.ajax({
+
+                    type: "GET",
+                    url: "/Admin/UrunOzellikTipWidget",
+                    data: { katId: kId },
+                    success: function myfunction(veri) {
+                        $("#tip").html('');
+                        $("#tip").append(veri);
+                    },
+                    error: function myfunction() {
+                        alert("hata");
+                    }
+                })
+
+            })
+        })
+
+
+    </script>
+}
+@model IEnumerable<ZeonTicaret.WebUI.Models.Urun>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Ürün Özellik Ekle
+            </header>
+            <div class="panel-body">
+                <form role="form" action="/Admin/UrunOzellikEkle" method="post" class="form-horizontal tasi-form">
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Ürün : </label>
+                        <div class="col-lg-10">
+                            <select id="urun" class="form-control m-bot15" name="UrunID">
+                                @foreach (var urun in Model)
+                                {
+                                    <option value="@urun.Id" data-urunKategoriID ="@urun.KategoriID" >@urun.Adi</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div id="tip">
+                    </div>
+                    <div id="deger">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-danger" type="submit">Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

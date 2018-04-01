@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Markalar";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@section head {
+    <link href="/Content/Admin/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+}
+@model IEnumerable<ZeonTicaret.WebUI.Models.Marka>
+
+<section class="panel">
+    <header class="panel-heading">
+        Markalar
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <br />
+            <div class="clearfix">
+                <div class="btn-group">
+                    <a href="/Admin/MarkaEkle" id="editable-sample_new" class="btn btn-success">
+                        Yeni Marka <i class="icon-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="space15"></div>
+            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Marka Adı</th>
+                        <th>Açıklama</th>
+                        <th>Resmi Göster</th>
+                        <th>Günecelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var marka in Model)
+                    {
+                        <tr class="">
+                            <td>@marka.Adi</td>
+                            <td>@marka.Aciklama</td>
+                            @if (marka.Resim != null)
+                            {
+                                <td><a class="fancybox" href="@marka.Resim.OrtaYol"><i class="icon-eye-open"></i></a></td>
+                            }
+                            else
+                            {
+                                <td><a class="fancybox" href="#"><i class="icon-eye-open"></i></a></td>
+                            }
+                            <td><a class="edit" href="/Admin/MarkaGuncelle/@marka.Id"><i class="icon-pencil"></i></a></td>
+                            <td><a class="delete" href="/Admin/MarkaSil/@marka.Id"><i class="icon-trash"></i></a></td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section script{
+    <script src="/Content/Admin/assets/fancybox/source/jquery.fancybox.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //    fancybox
+            jQuery(".fancybox").fancybox();
+        });
+
+    </script>
+}
